@@ -1,4 +1,6 @@
 
+
+
 import 'package:flutter/material.dart';
 import '../models/book.dart';
 
@@ -14,26 +16,35 @@ class BookImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 150,
-        child: ClipRRect(
+    return SizedBox(
+      width: 150,
+      height: 230,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            book.imageUrl,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: Colors.grey.shade300,
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.book,
-                  size: 60,
-                  color: Colors.grey,
-                ),
-              );
-            },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              book.imageUrl,
+              width: 150,
+              height: 230,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: 150,
+                  height: 230,
+                  color: Colors.grey.shade300,
+                  alignment: Alignment.center,
+                  child: const Icon(
+                    Icons.book,
+                    size: 60,
+                    color: Colors.grey,
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

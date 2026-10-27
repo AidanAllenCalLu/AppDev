@@ -15,6 +15,10 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+          ),
           onPressed: () {
             context.read<AuthenticationBloc>().add(
               AuthenticationSignOutEvent(),

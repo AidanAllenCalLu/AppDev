@@ -1,8 +1,6 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../cubit/book_cubit.dart';
 import '../cubit/book_state.dart';
@@ -78,10 +76,9 @@ class HomePage extends StatelessWidget {
                         child: BookImageWidget(
                           book: book,
                           onTap: () {
-                            context.push(
-                              '/book-detail',
-                              extra: book,
-                            );
+                            context
+                                .read<BookCubit>()
+                                .showBookDetails(book);
                           },
                         ),
                       );
@@ -92,9 +89,8 @@ class HomePage extends StatelessWidget {
             );
           }
 
-          return const Center(
-            child: Text('Unable to load books.'),
-          );
+          // The detail page will handle BookDetailLoaded.
+          return const SizedBox.shrink();
         },
       ),
     );
